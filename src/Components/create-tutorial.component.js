@@ -3,20 +3,19 @@
 // Import Modules
 import React, { useState } from "react";
 import axios from "axios";
-import TutorialForm from "./StudentForm";
+import TutorialForm from "./TutorialForm";
 
 const CreateTutorial = () => {
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    rollno: "",
+    title: "",
+    description: "",
   });
   //onSubmit handler
-  const onSubmit = (studentObject) => {
+  const onSubmit = (tutorialObject) => {
     axios
-      .post("http://localhost:3000/students/create-student", studentObject)
+      .post("http://localhost:8080/api/tutorials", tutorialObject)
       .then((res) => {
-        if (res.status === 200) alert("Student successfully create");
+        if (res.status === 200) alert("Tutorial successfully create");
         else Promise.reject();
       })
       .catch((e) => alert("Something went wrong"));
@@ -27,7 +26,7 @@ const CreateTutorial = () => {
       onSubmit={onSubmit}
       enableReinitialize
     >
-      CreateTutorial
+      Create Tutorial
     </TutorialForm>
   );
 };
